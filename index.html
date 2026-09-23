@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QRLocker - Generador Avanzado con Diseño Libre</title>
+    <title>QRLocker - Generador Profesional de Códigos QR</title>
     <!-- Código de Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2314070981371621"
          crossorigin="anonymous"></script>
@@ -22,7 +22,7 @@
         <span id="toast-message">¡Acción realizada con éxito!</span>
     </div>
 
-    <!-- MODAL PRIVACIDAD -->
+    <!-- MODAL DE POLÍTICA DE PRIVACIDAD -->
     <div id="modal-privacidad" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white max-w-2xl w-full p-6 rounded-2xl shadow-xl space-y-4 max-h-[80vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3">
@@ -30,7 +30,9 @@
                 <button onclick="cerrarModal('privacidad')" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             <div class="space-y-3 text-sm text-slate-600 leading-relaxed">
-                <p>En <b>QRLocker</b> valoramos tu privacidad y utilizamos cookies de Google AdSense.</p>
+                <p>En <b>QRLocker</b>, valoramos la privacidad de nuestros usuarios. Esta política describe qué información recopilamos y cómo la utilizamos.</p>
+                <h4 class="font-semibold text-slate-800">1. Uso de Cookies y Publicidad de Terceros</h4>
+                <p>Utilizamos proveedores de publicidad de terceros, como <b>Google AdSense</b>, para mostrar anuncios cuando visitas nuestra plataforma.</p>
             </div>
             <div class="text-right pt-2">
                 <button onclick="cerrarModal('privacidad')" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-medium">Entendido</button>
@@ -38,7 +40,7 @@
         </div>
     </div>
 
-    <!-- MODAL TÉRMINOS -->
+    <!-- MODAL DE TÉRMINOS Y CONDICIONES -->
     <div id="modal-terminos" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white max-w-2xl w-full p-6 rounded-2xl shadow-xl space-y-4 max-h-[80vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3">
@@ -46,7 +48,7 @@
                 <button onclick="cerrarModal('terminos')" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             <div class="space-y-3 text-sm text-slate-600 leading-relaxed">
-                <p>Servicio gratuito ofrecido "tal cual".</p>
+                <p>Bienvenido a <b>QRLocker</b>. Al utilizar nuestra plataforma gratuita, aceptas los siguientes términos.</p>
             </div>
             <div class="text-right pt-2">
                 <button onclick="cerrarModal('terminos')" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-medium">Aceptar</button>
@@ -63,12 +65,16 @@
                 </div>
                 <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">QRLocker</span>
             </div>
+            <nav class="flex space-x-6 text-sm font-medium text-slate-600">
+                <a href="#" class="text-blue-600 font-semibold">Generador Gratuito</a>
+            </nav>
         </div>
     </header>
 
     <!-- Contenido Principal -->
     <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-grow space-y-8">
         
+        <!-- BANNER DE PUBLICIDAD SUPERIOR -->
         <div class="bg-white border border-slate-200 p-3 rounded-2xl shadow-sm text-center">
             <span class="block text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-1">Espacio Patrocinado</span>
             <div class="min-h-[70px] bg-slate-50 border border-dashed border-slate-200 rounded-xl flex items-center justify-center">
@@ -76,58 +82,79 @@
             </div>
         </div>
 
+        <!-- SECCIÓN: GENERADOR -->
         <section class="space-y-6">
             <div class="text-center max-w-2xl mx-auto space-y-2">
-                <h1 class="text-3xl font-extrabold text-slate-900">Diseñador Interactivo de Códigos QR</h1>
-                <p class="text-slate-500 text-sm">Sube tu foto de fondo, ajusta el tamaño del QR y muévelo libremente en tiempo real.</p>
+                <h1 class="text-3xl font-extrabold text-slate-900">Generador Interactivo de Códigos QR</h1>
+                <p class="text-slate-500 text-sm">Crea códigos QR personalizados, sube tu foto de fondo, ajusta su tamaño y muévelo libremente.</p>
             </div>
 
-            <!-- CATEGORÍAS -->
+            <!-- BARRA DE CATEGORÍAS -->
             <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-200 flex overflow-x-auto gap-2 no-scrollbar">
                 <button onclick="seleccionarCategoria('website')" id="tab-website" class="cat-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap bg-blue-600 text-white shadow-sm transition">
                     <i data-lucide="globe" class="w-4 h-4"></i><span>WEBSITE</span>
                 </button>
-                <button onclick="seleccionarCategoria('wifi')" id="tab-wifi" class="cat-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap text-slate-600 hover:bg-slate-100 transition">
-                    <i data-lucide="wifi" class="w-4 h-4"></i><span>WIFI</span>
+                <button onclick="seleccionarCategoria('vcard')" id="tab-vcard" class="cat-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap text-slate-600 hover:bg-slate-100 transition">
+                    <i data-lucide="contact" class="w-4 h-4"></i><span>DIGITAL BUSINESS CARD</span>
                 </button>
                 <button onclick="seleccionarCategoria('text')" id="tab-text" class="cat-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap text-slate-600 hover:bg-slate-100 transition">
                     <i data-lucide="file-text" class="w-4 h-4"></i><span>TEXT</span>
+                </button>
+                <button onclick="seleccionarCategoria('wifi')" id="tab-wifi" class="cat-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap text-slate-600 hover:bg-slate-100 transition">
+                    <i data-lucide="wifi" class="w-4 h-4"></i><span>WIFI</span>
+                </button>
+                <button onclick="seleccionarCategoria('pdf')" id="tab-pdf" class="cat-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap text-slate-600 hover:bg-slate-100 transition">
+                    <i data-lucide="file-badge" class="w-4 h-4"></i><span>PDF / FILE</span>
+                </button>
+                <button onclick="seleccionarCategoria('app')" id="tab-app" class="cat-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap text-slate-600 hover:bg-slate-100 transition">
+                    <i data-lucide="smartphone" class="w-4 h-4"></i><span>APP STORE</span>
                 </button>
             </div>
 
             <div class="grid md:grid-cols-12 gap-8 items-start">
                 
-                <!-- Formulario y Controles de Posición -->
+                <!-- Formulario -->
                 <div class="md:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+                    <!-- CAMPOS DINÁMICOS -->
                     <div id="campos-formulario" class="space-y-4"></div>
+
+                    <!-- COLORES -->
+                    <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-100">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Color del QR</label>
+                            <input type="color" id="qr-color" value="#000000" class="w-full h-10 p-1 border border-slate-300 rounded-xl cursor-pointer bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Color de Fondo</label>
+                            <input type="color" id="qr-bg" value="#ffffff" class="w-full h-10 p-1 border border-slate-300 rounded-xl cursor-pointer bg-white">
+                        </div>
+                    </div>
 
                     <!-- SUBIR FOTO DE FONDO -->
                     <div class="space-y-2 pt-2 border-t border-slate-100">
-                        <label class="block text-sm font-medium text-slate-700">Subir Foto de Fondo (Diseño o Marco)</label>
+                        <label class="block text-sm font-medium text-slate-700">Subir Foto de Fondo (Diseño)</label>
                         <input type="file" id="input-foto-fondo" accept="image/*" onchange="cargarFotoFondo(event)" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
                     </div>
 
-                    <!-- CONTROLES DE TAMAÑO Y POSICIÓN EN TIEMPO REAL -->
+                    <!-- CONTROLES DE TAMAÑO Y POSICIÓN -->
                     <div class="space-y-4 pt-2 border-t border-slate-100 bg-slate-50 p-4 rounded-xl">
-                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">Ajustes del Código QR</h4>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">Ajustes Interactivos del QR</h4>
                         
-                        <!-- Control deslizante de tamaño -->
                         <div>
                             <div class="flex justify-between text-xs text-slate-600 mb-1">
                                 <span>Tamaño del QR</span>
                                 <span id="val-tamano">140px</span>
                             </div>
-                            <input type="range" id="slider-tamano" min="100" max="240" value="140" oninput="cambiarTamanoQR(this.value)" class="w-full accent-blue-600 cursor-pointer">
+                            <input type="range" id="slider-tamano" min="100" max="220" value="140" oninput="cambiarTamanoQR(this.value)" class="w-full accent-blue-600 cursor-pointer">
                         </div>
 
-                        <!-- Control de posición X e Y -->
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <div class="flex justify-between text-xs text-slate-600 mb-1"><span>Posición Horizontal (X)</span></div>
+                                <div class="flex justify-between text-xs text-slate-600 mb-1"><span>Horizontal (X)</span></div>
                                 <input type="range" id="slider-pos-x" min="0" max="100" value="50" oninput="cambiarPosicion()" class="w-full accent-blue-600 cursor-pointer">
                             </div>
                             <div>
-                                <div class="flex justify-between text-xs text-slate-600 mb-1"><span>Posición Vertical (Y)</span></div>
+                                <div class="flex justify-between text-xs text-slate-600 mb-1"><span>Vertical (Y)</span></div>
                                 <input type="range" id="slider-pos-y" min="0" max="100" value="50" oninput="cambiarPosicion()" class="w-full accent-blue-600 cursor-pointer">
                             </div>
                         </div>
@@ -139,19 +166,17 @@
                     </button>
                 </div>
 
-                <!-- Vista Previa Interactiva con Fondo y QR Móvil -->
+                <!-- Vista Previa Interactiva -->
                 <div class="md:col-span-5 space-y-6">
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center text-center space-y-4">
                         <h3 class="font-bold text-slate-700">Vista Previa Interactiva</h3>
                         
                         <!-- Lienzo con Imagen de Fondo y QR Movible -->
                         <div id="lienzo-preview" class="relative w-[280px] h-[280px] bg-slate-100 border-2 border-slate-200 rounded-2xl overflow-hidden flex items-center justify-center shadow-inner">
-                            <span id="placeholder-fondo" class="text-xs text-slate-400 p-4 z-0">Sube una foto o genera tu QR para visualizar</span>
+                            <span id="placeholder-fondo" class="text-xs text-slate-400 p-4 z-0">Sube una foto o genera tu QR</span>
                             
-                            <!-- Imagen de fondo real -->
                             <img id="imagen-fondo" class="absolute inset-0 w-full h-full object-cover hidden z-0" alt="Fondo">
 
-                            <!-- Contenedor Movible del QR -->
                             <div id="qr-movible" class="absolute p-2 bg-white rounded-xl shadow-lg border border-slate-300 z-10 transition-all duration-75 flex items-center justify-center" style="left: 50%; top: 50%; transform: translate(-50%, -50%);">
                                 <div id="qrcode-container"></div>
                             </div>
@@ -160,8 +185,16 @@
                         <div id="acciones-qr" class="w-full space-y-2 hidden">
                             <button onclick="descargarQR()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm transition flex items-center justify-center space-x-2">
                                 <i data-lucide="download" class="w-4 h-4"></i>
-                                <span>Descargar Resultado</span>
+                                <span>Descargar Imagen PNG</span>
                             </button>
+                        </div>
+                    </div>
+
+                    <!-- BANNER LATERAL -->
+                    <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm text-center">
+                        <span class="block text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-2">Publicidad</span>
+                        <div class="min-h-[150px] bg-slate-50 border border-dashed border-slate-200 rounded-xl flex items-center justify-center p-4">
+                            <p class="text-xs text-slate-400">Bloque lateral para anuncios</p>
                         </div>
                     </div>
                 </div>
@@ -171,9 +204,9 @@
 
     </main>
 
-    <!-- Footer -->
+    <!-- Pie de página -->
     <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-12 space-y-2">
-        <p>&copy; 2026 QRLocker. Todos los derechos reservados.</p>
+        <p>&copy; 2026 QRLocker. Todos los derechos reservados. Generador de Códigos QR gratuito.</p>
         <div class="flex justify-center space-x-4 text-slate-600 font-medium">
             <button onclick="abrirModal('privacidad')" class="hover:underline">Política de Privacidad</button>
             <span>•</span>
@@ -181,9 +214,10 @@
         </div>
     </footer>
 
-    <!-- Script de Lógica -->
+    <!-- Lógica de JavaScript -->
     <script>
         lucide.createIcons();
+
         let categoriaActual = 'website';
         let qrcodeInstance = null;
 
@@ -204,11 +238,15 @@
         function renderizarCamposFormulario() {
             const contenedor = document.getElementById('campos-formulario');
             if (categoriaActual === 'website') {
-                contenedor.innerHTML = `<div><label class="block text-sm font-medium text-slate-700 mb-1">Enlace (URL)</label><input type="text" id="input-url" placeholder="https://tuempresa.com" class="w-full px-4 py-2.5 border border-slate-300 rounded-xl text-sm"></div>`;
-            } else if (categoriaActual === 'wifi') {
-                contenedor.innerHTML = `<div><label class="block text-xs font-medium text-slate-700 mb-1">Red WiFi (SSID)</label><input type="text" id="wifi-ssid" placeholder="MiRed" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div><div><label class="block text-xs font-medium text-slate-700 mb-1">Contraseña</label><input type="text" id="wifi-pass" placeholder="clave123" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div>`;
+                contenedor.innerHTML = `<div><label class="block text-sm font-medium text-slate-700 mb-1">Enlace de Destino (URL)</label><input type="text" id="input-url" placeholder="https://tuempresa.com" class="w-full px-4 py-2.5 border border-slate-300 rounded-xl text-sm"></div>`;
+            } else if (categoriaActual === 'vcard') {
+                contenedor.innerHTML = `<div class="grid grid-cols-2 gap-3"><div><label class="block text-xs font-medium text-slate-700 mb-1">Nombre</label><input type="text" id="v-nombre" placeholder="Juan Pérez" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div><div><label class="block text-xs font-medium text-slate-700 mb-1">Teléfono</label><input type="text" id="v-tel" placeholder="+593..." class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div></div><div><label class="block text-xs font-medium text-slate-700 mb-1">Correo Electrónico</label><input type="email" id="v-email" placeholder="juan@empresa.com" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div><div><label class="block text-xs font-medium text-slate-700 mb-1">Empresa / Cargo</label><input type="text" id="v-cargo" placeholder="Gerente Comercial" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div>`;
             } else if (categoriaActual === 'text') {
-                contenedor.innerHTML = `<div><label class="block text-sm font-medium text-slate-700 mb-1">Texto</label><textarea id="input-text" rows="2" placeholder="Mensaje..." class="w-full px-4 py-2.5 border border-slate-300 rounded-xl text-sm"></textarea></div>`;
+                contenedor.innerHTML = `<div><label class="block text-sm font-medium text-slate-700 mb-1">Mensaje Personalizado</label><textarea id="input-text" rows="3" placeholder="Escribe tu mensaje..." class="w-full px-4 py-2.5 border border-slate-300 rounded-xl text-sm"></textarea></div>`;
+            } else if (categoriaActual === 'wifi') {
+                contenedor.innerHTML = `<div><label class="block text-xs font-medium text-slate-700 mb-1">Red WiFi (SSID)</label><input type="text" id="wifi-ssid" placeholder="MiRed" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div><div><label class="block text-xs font-medium text-slate-700 mb-1">Contraseña</label><input type="text" id="wifi-pass" placeholder="clave123" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div><div><label class="block text-xs font-medium text-slate-700 mb-1">Seguridad</label><select id="wifi-tipo" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm bg-white"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">Sin contraseña</option></select></div>`;
+            } else if (categoriaActual === 'pdf' || categoriaActual === 'app') {
+                contenedor.innerHTML = `<div><label class="block text-sm font-medium text-slate-700 mb-1">Enlace del Archivo / App</label><input type="text" id="input-file" placeholder="https://..." class="w-full px-4 py-2.5 border border-slate-300 rounded-xl text-sm"></div>`;
             }
         }
 
@@ -228,10 +266,6 @@
 
         function cambiarTamanoQR(valor) {
             document.getElementById('val-tamano').textContent = valor + 'px';
-            const contenedorQR = document.getElementById('qrcode-container');
-            contenedorQR.style.width = valor + 'px';
-            contenedorQR.style.height = valor + 'px';
-            // Regenerar o escalar si es necesario
             generarQR();
         }
 
@@ -240,7 +274,6 @@
             const posY = document.getElementById('slider-pos-y').value;
             const qrMovible = document.getElementById('qr-movible');
             
-            // Mover usando porcentajes exactos dentro del lienzo
             qrMovible.style.left = posX + '%';
             qrMovible.style.top = posY + '%';
             qrMovible.style.transform = 'translate(-50%, -50%)';
@@ -248,22 +281,35 @@
 
         function generarQR() {
             let contenidoFinal = "";
-            if (categoriaActual === 'website') {
-                contenidoFinal = document.getElementById('input-url').value.trim();
+            const colorDark = document.getElementById('qr-color').value;
+            const colorLight = document.getElementById('qr-bg').value;
+            const contenedorQR = document.getElementById('qrcode-container');
+            const accionesContainer = document.getElementById('acciones-qr');
+
+            if (categoriaActual === 'website' || categoriaActual === 'pdf' || categoriaActual === 'app') {
+                const inputId = categoriaActual === 'website' ? 'input-url' : 'input-file';
+                const val = document.getElementById(inputId).value.trim();
+                if (!val) { mostrarToast('Por favor completa el campo de enlace.'); return; }
+                contenidoFinal = val;
             } else if (categoriaActual === 'text') {
-                contenidoFinal = document.getElementById('input-text').value.trim();
+                const val = document.getElementById('input-text').value.trim();
+                if (!val) { mostrarToast('Por favor escribe un mensaje.'); return; }
+                contenidoFinal = val;
+            } else if (categoriaActual === 'vcard') {
+                const nombre = document.getElementById('v-nombre').value.trim();
+                const tel = document.getElementById('v-tel').value.trim();
+                const email = document.getElementById('v-email').value.trim();
+                const cargo = document.getElementById('v-cargo').value.trim();
+                if (!nombre) { mostrarToast('Por lo menos ingresa un nombre.'); return; }
+                contenidoFinal = `BEGIN:VCARD\nVERSION:3.0\nFN:${nombre}\nTEL:${tel}\nEMAIL:${email}\nTITLE:${cargo}\nEND:VCARD`;
             } else if (categoriaActual === 'wifi') {
                 const ssid = document.getElementById('wifi-ssid').value.trim();
                 const pass = document.getElementById('wifi-pass').value.trim();
-                contenidoFinal = `WIFI:T:WPA;S:${ssid};P:${pass};;`;
+                const tipo = document.getElementById('wifi-tipo').value;
+                if (!ssid) { mostrarToast('Ingresa el nombre de la red WiFi.'); return; }
+                contenidoFinal = `WIFI:T:${tipo};S:${ssid};P:${pass};;`;
             }
 
-            if (!contenidoFinal) {
-                alert('Por favor ingresa los datos necesarios.');
-                return;
-            }
-
-            const contenedorQR = document.getElementById('qrcode-container');
             contenedorQR.innerHTML = "";
             const tamanoActual = document.getElementById('slider-tamano').value;
 
@@ -271,16 +317,33 @@
                 text: contenidoFinal,
                 width: parseInt(tamanoActual),
                 height: parseInt(tamanoActual),
-                colorDark: "#000000",
-                colorLight: "#ffffff",
+                colorDark: colorDark,
+                colorLight: colorLight,
                 correctLevel: QRCode.CorrectLevel.H
             });
 
-            document.getElementById('acciones-qr').classList.remove('hidden');
+            accionesContainer.classList.remove('hidden');
+            mostrarToast('¡Código QR generado con éxito!');
         }
 
         function descargarQR() {
-            alert('¡Función de descarga lista! Puedes capturar tu pantalla o integrar una librería de exportación de canvas próximamente.');
+            const img = document.querySelector('#qrcode-container img');
+            if (img) {
+                const enlace = document.createElement('a');
+                enlace.href = img.src;
+                enlace.download = `codigo-qr-${categoriaActual}.png`;
+                enlace.click();
+                mostrarToast('¡Imagen descargada!');
+            } else {
+                mostrarToast('Primero genera un código QR.');
+            }
+        }
+
+        function mostrarToast(mensaje) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = mensaje;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => { toast.classList.add('translate-y-20', 'opacity-0'); }, 3000);
         }
     </script>
 </body>
