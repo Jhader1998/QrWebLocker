@@ -136,7 +136,7 @@
                         <input type="file" id="input-foto-fondo" accept="image/*" onchange="cargarFotoFondo(event)" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
                     </div>
 
-                    <!-- CONTROLES DE TAMAÑO Y POSICIÓN (OCULTOS HASTA QUE SUBAN FOTO) -->
+                    <!-- CONTROLES DE TAMAÑO Y POSICIÓN (MÁXIMO 165px PARA EVITAR BUGS) -->
                     <div id="panel-controles-foto" class="space-y-4 pt-2 border-t border-slate-100 bg-slate-50 p-4 rounded-xl hidden">
                         <div class="flex justify-between items-center">
                             <h4 class="text-xs font-bold uppercase tracking-wider text-blue-600">Ajustes sobre la Foto</h4>
@@ -145,10 +145,10 @@
                         
                         <div>
                             <div class="flex justify-between text-xs text-slate-600 mb-1">
-                                <span>Tamaño del QR</span>
-                                <span id="val-tamano">140px</span>
+                                <span>Tamaño del QR (Máx. 165px)</span>
+                                <span id="val-tamano">130px</span>
                             </div>
-                            <input type="range" id="slider-tamano" min="80" max="200" value="140" oninput="cambiarTamanoQR(this.value)" class="w-full accent-blue-600 cursor-pointer">
+                            <input type="range" id="slider-tamano" min="80" max="165" value="130" oninput="cambiarTamanoQR(this.value)" class="w-full accent-blue-600 cursor-pointer">
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
@@ -181,7 +181,7 @@
                             <img id="imagen-fondo" class="absolute inset-0 w-full h-full object-cover hidden z-0" alt="Fondo">
 
                             <!-- Contenedor del QR -->
-                            <div id="qr-movible" class="p-3 bg-white rounded-xl shadow-md border border-slate-200 flex items-center justify-center transition-all duration-75" style="position: relative;">
+                            <div id="qr-movible" class="p-2 bg-white rounded-xl shadow-md border border-slate-200 flex items-center justify-center transition-all duration-75" style="position: relative;">
                                 <div id="qrcode-container">
                                     <span class="text-xs text-slate-400">Ingresa datos y genera tu QR</span>
                                 </div>
@@ -281,14 +281,12 @@
                     hayFotoFondo = true;
                     document.getElementById('panel-controles-foto').classList.remove('hidden');
 
-                    // Cambiar el contenedor QR a modo flotante absoluto
                     const qrMovible = document.getElementById('qr-movible');
                     qrMovible.style.position = 'absolute';
                     qrMovible.style.left = '50%';
                     qrMovible.style.top = '50%';
                     qrMovible.style.transform = 'translate(-50%, -50%)';
 
-                    // Resetear sliders a centro
                     document.getElementById('slider-pos-x').value = 50;
                     document.getElementById('slider-pos-y').value = 50;
                 }
@@ -303,7 +301,6 @@
             document.getElementById('input-foto-fondo').value = "";
             document.getElementById('panel-controles-foto').classList.add('hidden');
 
-            // Volver QR a modo estático normal centrado
             const qrMovible = document.getElementById('qr-movible');
             qrMovible.style.position = 'relative';
             qrMovible.style.left = 'auto';
