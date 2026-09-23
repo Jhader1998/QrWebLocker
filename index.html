@@ -44,6 +44,14 @@
     <!-- Contenido Principal -->
     <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-grow space-y-8">
         
+        <!-- BANNER DE PUBLICIDAD SUPERIOR (AdSense Header) -->
+        <div class="bg-white border border-slate-200 p-3 rounded-2xl shadow-sm text-center">
+            <span class="block text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-1">Espacio Patrocinado</span>
+            <div class="min-h-[70px] bg-slate-50 border border-dashed border-slate-200 rounded-xl flex items-center justify-center">
+                <p class="text-xs text-slate-400">Aquí irá tu código de anuncio superior (Google AdSense)</p>
+            </div>
+        </div>
+
         <!-- SECCIÓN 1: GENERADOR -->
         <section id="seccion-generador" class="space-y-6">
             <div class="text-center max-w-2xl mx-auto space-y-2">
@@ -51,7 +59,7 @@
                 <p class="text-slate-500 text-sm">Elige qué tipo de contenido deseas compartir y personaliza tu código al instante.</p>
             </div>
 
-            <!-- BARRA DE CATEGORÍAS TIPO TABS (Basado en tu imagen) -->
+            <!-- BARRA DE CATEGORÍAS TIPO TABS -->
             <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-200 flex overflow-x-auto gap-2 no-scrollbar">
                 <button onclick="seleccionarCategoria('website')" id="tab-website" class="cat-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap bg-blue-600 text-white shadow-sm transition">
                     <i data-lucide="globe" class="w-4 h-4"></i><span>WEBSITE</span>
@@ -115,20 +123,30 @@
                     </button>
                 </div>
 
-                <!-- Vista Previa -->
-                <div class="md:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center text-center space-y-4">
-                    <h3 class="font-bold text-slate-700">Vista Previa del Resultado</h3>
-                    
-                    <div id="qrcode-container" class="p-4 bg-white border border-slate-100 rounded-2xl shadow-inner min-h-[200px] min-w-[200px] flex items-center justify-center">
-                        <span class="text-xs text-slate-400">Configura tus datos y genera tu QR</span>
+                <!-- Vista Previa y Banner Lateral de Anuncios -->
+                <div class="md:col-span-5 space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center text-center space-y-4">
+                        <h3 class="font-bold text-slate-700">Vista Previa del Resultado</h3>
+                        
+                        <div id="qrcode-container" class="p-4 bg-white border border-slate-100 rounded-2xl shadow-inner min-h-[200px] min-w-[200px] flex items-center justify-center">
+                            <span class="text-xs text-slate-400">Configura tus datos y genera tu QR</span>
+                        </div>
+
+                        <div id="acciones-qr" class="w-full space-y-2 hidden">
+                            <button onclick="descargarQR()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm transition flex items-center justify-center space-x-2">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                               <span>Descargar Imagen PNG</span>
+                            </button>
+                            <p id="info-qr-tipo" class="text-xs text-slate-500 pt-1"></p>
+                        </div>
                     </div>
 
-                    <div id="acciones-qr" class="w-full space-y-2 hidden">
-                        <button onclick="descargarQR()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm transition flex items-center justify-center space-x-2">
-                            <i data-lucide="download" class="w-4 h-4"></i>
-                            <span>Descargar Imagen PNG</span>
-                        </button>
-                        <p id="info-qr-tipo" class="text-xs text-slate-500 pt-1"></p>
+                    <!-- BANNER DE PUBLICIDAD LATERAL (AdSense Sidebar) -->
+                    <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm text-center">
+                        <span class="block text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-2">Publicidad</span>
+                        <div class="min-h-[150px] bg-slate-50 border border-dashed border-slate-200 rounded-xl flex items-center justify-center p-4">
+                            <p class="text-xs text-slate-400">Bloque de anuncios cuadrado o vertical para AdSense</p>
+                        </div>
                     </div>
                 </div>
 
@@ -344,7 +362,7 @@
             // Si es dinámico y es web/archivo, simulamos redirección
             if (tipoActual === 'dinamico' && (categoriaActual === 'website' || categoriaActual === 'pdf' || categoriaActual === 'app')) {
                 const codigoAleatorio = Math.random().toString(36).substring(2, 8);
-                contenidoFinal = `https://qrlocker.app/r/${codigoAleatorio}`;
+                contenidoFinal = `https://qr-web-locker.vercel.app/r/${codigoAleatorio}`;
                 infoTipo.innerHTML = `⚡ <b>QR Dinámico activo:</b> Redirige a tu enlace inicial con analíticas (Límite: 100 escaneos).`;
             } else {
                 infoTipo.innerHTML = `🔒 <b>QR Estático (${categoriaActual.toUpperCase()}):</b> Contiene la información integrada directamente.`;
