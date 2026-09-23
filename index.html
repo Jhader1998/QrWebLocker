@@ -86,7 +86,7 @@
         <section class="space-y-6">
             <div class="text-center max-w-2xl mx-auto space-y-2">
                 <h1 class="text-3xl font-extrabold text-slate-900">Generador Interactivo de Códigos QR</h1>
-                <p class="text-slate-500 text-sm">Crea códigos QR personalizados, sube tu foto de fondo, ajusta su tamaño y muévelo libremente.</p>
+                <p class="text-slate-500 text-sm">Crea códigos QR personalizados, sube tu foto de fondo para activar los controles flotantes o genera un código limpio al instante.</p>
             </div>
 
             <!-- BARRA DE CATEGORÍAS -->
@@ -132,20 +132,23 @@
 
                     <!-- SUBIR FOTO DE FONDO -->
                     <div class="space-y-2 pt-2 border-t border-slate-100">
-                        <label class="block text-sm font-medium text-slate-700">Subir Foto de Fondo (Diseño)</label>
+                        <label class="block text-sm font-medium text-slate-700">Subir Foto de Fondo (Opcional)</label>
                         <input type="file" id="input-foto-fondo" accept="image/*" onchange="cargarFotoFondo(event)" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
                     </div>
 
-                    <!-- CONTROLES DE TAMAÑO Y POSICIÓN -->
-                    <div class="space-y-4 pt-2 border-t border-slate-100 bg-slate-50 p-4 rounded-xl">
-                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">Ajustes Interactivos del QR</h4>
+                    <!-- CONTROLES DE TAMAÑO Y POSICIÓN (OCULTOS HASTA QUE SUBAN FOTO) -->
+                    <div id="panel-controles-foto" class="space-y-4 pt-2 border-t border-slate-100 bg-slate-50 p-4 rounded-xl hidden">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-blue-600">Ajustes sobre la Foto</h4>
+                            <button onclick="quitarFotoFondo()" class="text-xs text-red-500 hover:underline">Quitar foto</button>
+                        </div>
                         
                         <div>
                             <div class="flex justify-between text-xs text-slate-600 mb-1">
                                 <span>Tamaño del QR</span>
                                 <span id="val-tamano">140px</span>
                             </div>
-                            <input type="range" id="slider-tamano" min="100" max="220" value="140" oninput="cambiarTamanoQR(this.value)" class="w-full accent-blue-600 cursor-pointer">
+                            <input type="range" id="slider-tamano" min="80" max="200" value="140" oninput="cambiarTamanoQR(this.value)" class="w-full accent-blue-600 cursor-pointer">
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
@@ -169,16 +172,19 @@
                 <!-- Vista Previa Interactiva -->
                 <div class="md:col-span-5 space-y-6">
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center text-center space-y-4">
-                        <h3 class="font-bold text-slate-700">Vista Previa Interactiva</h3>
+                        <h3 class="font-bold text-slate-700">Vista Previa</h3>
                         
-                        <!-- Lienzo con Imagen de Fondo y QR Movible -->
-                        <div id="lienzo-preview" class="relative w-[280px] h-[280px] bg-slate-100 border-2 border-slate-200 rounded-2xl overflow-hidden flex items-center justify-center shadow-inner">
-                            <span id="placeholder-fondo" class="text-xs text-slate-400 p-4 z-0">Sube una foto o genera tu QR</span>
+                        <!-- Lienzo con o sin Foto -->
+                        <div id="lienzo-preview" class="relative w-[280px] h-[280px] bg-white border-2 border-slate-200 rounded-2xl overflow-hidden flex items-center justify-center shadow-inner">
                             
+                            <!-- Imagen de fondo (Oculta por defecto) -->
                             <img id="imagen-fondo" class="absolute inset-0 w-full h-full object-cover hidden z-0" alt="Fondo">
 
-                            <div id="qr-movible" class="absolute p-2 bg-white rounded-xl shadow-lg border border-slate-300 z-10 transition-all duration-75 flex items-center justify-center" style="left: 50%; top: 50%; transform: translate(-50%, -50%);">
-                                <div id="qrcode-container"></div>
+                            <!-- Contenedor del QR -->
+                            <div id="qr-movible" class="p-3 bg-white rounded-xl shadow-md border border-slate-200 flex items-center justify-center transition-all duration-75" style="position: relative;">
+                                <div id="qrcode-container">
+                                    <span class="text-xs text-slate-400">Ingresa datos y genera tu QR</span>
+                                </div>
                             </div>
                         </div>
 
@@ -220,6 +226,7 @@
 
         let categoriaActual = 'website';
         let qrcodeInstance = null;
+        let hayFotoFondo = false;
 
         renderizarCamposFormulario();
 
@@ -244,9 +251,21 @@
             } else if (categoriaActual === 'text') {
                 contenedor.innerHTML = `<div><label class="block text-sm font-medium text-slate-700 mb-1">Mensaje Personalizado</label><textarea id="input-text" rows="3" placeholder="Escribe tu mensaje..." class="w-full px-4 py-2.5 border border-slate-300 rounded-xl text-sm"></textarea></div>`;
             } else if (categoriaActual === 'wifi') {
-                contenedor.innerHTML = `<div><label class="block text-xs font-medium text-slate-700 mb-1">Red WiFi (SSID)</label><input type="text" id="wifi-ssid" placeholder="MiRed" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div><div><label class="block text-xs font-medium text-slate-700 mb-1">Contraseña</label><input type="text" id="wifi-pass" placeholder="clave123" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div><div><label class="block text-xs font-medium text-slate-700 mb-1">Seguridad</label><select id="wifi-tipo" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm bg-white"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">Sin contraseña</option></select></div>`;
+                contenedor.innerHTML = `
+                    <div><label class="block text-xs font-medium text-slate-700 mb-1">Nombre de la Red (SSID)</label><input type="text" id="wifi-ssid" placeholder="MiRedWiFi" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div>
+                    <div><label class="block text-xs font-medium text-slate-700 mb-1">Seguridad</label><select id="wifi-tipo" onchange="toggleWifiPass(this.value)" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm bg-white"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">Sin contraseña</option></select></div>
+                    <div id="grupo-wifi-pass"><label class="block text-xs font-medium text-slate-700 mb-1">Contraseña</label><input type="text" id="wifi-pass" placeholder="contraseña123" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm"></div>`;
             } else if (categoriaActual === 'pdf' || categoriaActual === 'app') {
                 contenedor.innerHTML = `<div><label class="block text-sm font-medium text-slate-700 mb-1">Enlace del Archivo / App</label><input type="text" id="input-file" placeholder="https://..." class="w-full px-4 py-2.5 border border-slate-300 rounded-xl text-sm"></div>`;
+            }
+        }
+
+        function toggleWifiPass(tipo) {
+            const grupoPass = document.getElementById('grupo-wifi-pass');
+            if (tipo === 'nopass') {
+                grupoPass.classList.add('hidden');
+            } else {
+                grupoPass.classList.remove('hidden');
             }
         }
 
@@ -258,10 +277,38 @@
                     const imgFondo = document.getElementById('imagen-fondo');
                     imgFondo.src = e.target.result;
                     imgFondo.classList.remove('hidden');
-                    document.getElementById('placeholder-fondo').classList.add('hidden');
+                    
+                    hayFotoFondo = true;
+                    document.getElementById('panel-controles-foto').classList.remove('hidden');
+
+                    // Cambiar el contenedor QR a modo flotante absoluto
+                    const qrMovible = document.getElementById('qr-movible');
+                    qrMovible.style.position = 'absolute';
+                    qrMovible.style.left = '50%';
+                    qrMovible.style.top = '50%';
+                    qrMovible.style.transform = 'translate(-50%, -50%)';
+
+                    // Resetear sliders a centro
+                    document.getElementById('slider-pos-x').value = 50;
+                    document.getElementById('slider-pos-y').value = 50;
                 }
                 lector.readAsDataURL(archivo);
             }
+        }
+
+        function quitarFotoFondo() {
+            hayFotoFondo = false;
+            document.getElementById('imagen-fondo').classList.add('hidden');
+            document.getElementById('imagen-fondo').src = "";
+            document.getElementById('input-foto-fondo').value = "";
+            document.getElementById('panel-controles-foto').classList.add('hidden');
+
+            // Volver QR a modo estático normal centrado
+            const qrMovible = document.getElementById('qr-movible');
+            qrMovible.style.position = 'relative';
+            qrMovible.style.left = 'auto';
+            qrMovible.style.top = 'auto';
+            qrMovible.style.transform = 'none';
         }
 
         function cambiarTamanoQR(valor) {
@@ -270,6 +317,7 @@
         }
 
         function cambiarPosicion() {
+            if (!hayFotoFondo) return;
             const posX = document.getElementById('slider-pos-x').value;
             const posY = document.getElementById('slider-pos-y').value;
             const qrMovible = document.getElementById('qr-movible');
@@ -304,14 +352,14 @@
                 contenidoFinal = `BEGIN:VCARD\nVERSION:3.0\nFN:${nombre}\nTEL:${tel}\nEMAIL:${email}\nTITLE:${cargo}\nEND:VCARD`;
             } else if (categoriaActual === 'wifi') {
                 const ssid = document.getElementById('wifi-ssid').value.trim();
-                const pass = document.getElementById('wifi-pass').value.trim();
                 const tipo = document.getElementById('wifi-tipo').value;
+                const pass = tipo === 'nopass' ? '' : document.getElementById('wifi-pass').value.trim();
                 if (!ssid) { mostrarToast('Ingresa el nombre de la red WiFi.'); return; }
                 contenidoFinal = `WIFI:T:${tipo};S:${ssid};P:${pass};;`;
             }
 
             contenedorQR.innerHTML = "";
-            const tamanoActual = document.getElementById('slider-tamano').value;
+            const tamanoActual = hayFotoFondo ? document.getElementById('slider-tamano').value : 160;
 
             qrcodeInstance = new QRCode(contenedorQR, {
                 text: contenidoFinal,
