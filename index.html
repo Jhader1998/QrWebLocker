@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QRLocker - Generador Profesional de Códigos QR</title>
+    <title>QRLocker - Generador Gratuito de Códigos QR</title>
+    <!-- Código de Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2314070981371621"
+         crossorigin="anonymous"></script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Librería para generar códigos QR -->
@@ -29,11 +32,9 @@
             <div class="space-y-3 text-sm text-slate-600 leading-relaxed">
                 <p>En <b>QRLocker</b>, valoramos la privacidad de nuestros usuarios. Esta política describe qué información recopilamos y cómo la utilizamos.</p>
                 <h4 class="font-semibold text-slate-800">1. Uso de Cookies y Publicidad de Terceros</h4>
-                <p>Utilizamos proveedores de publicidad de terceros, como <b>Google AdSense</b>, para mostrar anuncios cuando visitas nuestra plataforma. Estos proveedores pueden utilizar cookies (como la cookie de DART) para mostrar anuncios basados en tus visitas anteriores a este sitio u otros sitios web de Internet.</p>
+                <p>Utilizamos proveedores de publicidad de terceros, como <b>Google AdSense</b>, para mostrar anuncios cuando visitas nuestra plataforma. Estos proveedores pueden utilizar cookies para mostrar anuncios basados en tus visitas anteriores.</p>
                 <h4 class="font-semibold text-slate-800">2. Datos de los Códigos QR</h4>
-                <p>Los enlaces, textos o configuraciones que ingresas para generar tus códigos QR se procesan de forma segura. No vendemos ni compartimos datos personales de los usuarios.</p>
-                <h4 class="font-semibold text-slate-800">3. Contacto</h4>
-                <p>Si tienes dudas sobre nuestra política de privacidad, puedes contactarnos a través de los canales oficiales de soporte de la plataforma.</p>
+                <p>Los enlaces, textos o configuraciones que ingresas para generar tus códigos QR se procesan de forma segura.</p>
             </div>
             <div class="text-right pt-2">
                 <button onclick="cerrarModal('privacidad')" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-medium">Entendido</button>
@@ -49,13 +50,11 @@
                 <button onclick="cerrarModal('terminos')" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             <div class="space-y-3 text-sm text-slate-600 leading-relaxed">
-                <p>Bienvenido a <b>QRLocker</b>. Al utilizar nuestra plataforma de generación de códigos QR y herramientas B2B, aceptas los siguientes términos:</p>
-                <h4 class="font-semibold text-slate-800">1. Servicio "Tal Cual" (As-Is)</h4>
-                <p>El servicio se ofrece de manera gratuita y de pago bajo la modalidad "tal cual" y "según disponibilidad". No garantizamos que el servicio esté libre de interrupciones o errores técnicos.</p>
+                <p>Bienvenido a <b>QRLocker</b>. Al utilizar nuestra plataforma gratuita, aceptas los siguientes términos:</p>
+                <h4 class="font-semibold text-slate-800">1. Servicio "Tal Cual"</h4>
+                <p>El servicio se ofrece de manera gratuita bajo la modalidad "tal cual". No garantizamos disponibilidad ininterrumpida.</p>
                 <h4 class="font-semibold text-slate-800">2. Responsabilidad del Usuario</h4>
-                <p>Los usuarios son <b>absolutamente responsables</b> de los enlaces de internet, tarjetas de contacto (vCard), redes Wi-Fi o textos que codifiquen y compartan a través de los códigos QR generados en nuestra plataforma. QRLocker no aprueba ni se hace responsable del contenido alojado en los destinos externos enlazados por los usuarios.</p>
-                <h4 class="font-semibold text-slate-800">3. Modificaciones</h4>
-                <p>Nos reservamos el derecho de modificar o discontinuar las funciones gratuitas o de pago en cualquier momento sin previo aviso.</p>
+                <p>Los usuarios son <b>absolutamente responsables</b> de los enlaces y contenidos que codifican a través de los códigos QR generados.</p>
             </div>
             <div class="text-right pt-2">
                 <button onclick="cerrarModal('terminos')" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-medium">Aceptar</button>
@@ -72,16 +71,9 @@
                 </div>
                 <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">QRLocker</span>
             </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
-                <button onclick="cambiarSeccion('generador')" class="hover:text-blue-600 transition">Generador</button>
-                <button onclick="cambiarSeccion('empresas')" class="hover:text-blue-600 transition">Empresas & Excel</button>
-                <button onclick="cambiarSeccion('precios')" class="hover:text-blue-600 transition">Planes</button>
+            <nav class="flex space-x-6 text-sm font-medium text-slate-600">
+                <a href="#" class="text-blue-600 font-semibold">Generador Gratuito</a>
             </nav>
-            <div>
-                <button onclick="cambiarSeccion('precios')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium shadow-sm transition">
-                    Ver Planes Pro
-                </button>
-            </div>
         </div>
     </header>
 
@@ -92,18 +84,19 @@
         <div class="bg-white border border-slate-200 p-3 rounded-2xl shadow-sm text-center">
             <span class="block text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-1">Espacio Patrocinado</span>
             <div class="min-h-[70px] bg-slate-50 border border-dashed border-slate-200 rounded-xl flex items-center justify-center">
-                <p class="text-xs text-slate-400">Aquí irá tu código de anuncio superior (Google AdSense)</p>
+                <!-- Aquí puedes colocar el bloque de anuncio de display de AdSense en el futuro -->
+                <p class="text-xs text-slate-400">Espacio publicitario superior</p>
             </div>
         </div>
 
-        <!-- SECCIÓN 1: GENERADOR -->
-        <section id="seccion-generador" class="space-y-6">
+        <!-- SECCIÓN: GENERADOR -->
+        <section class="space-y-6">
             <div class="text-center max-w-2xl mx-auto space-y-2">
-                <h1 class="text-3xl font-extrabold text-slate-900">Generador de Códigos QR Inteligente</h1>
-                <p class="text-slate-500 text-sm">Herramienta web profesional para crear códigos QR dinámicos y estáticos orientados a sitios web, tarjetas de presentación digitales (vCard), redes Wi-Fi, textos y archivos de manera rápida y gratuita.</p>
+                <h1 class="text-3xl font-extrabold text-slate-900">Generador de Códigos QR Gratuito</h1>
+                <p class="text-slate-500 text-sm">Crea códigos QR personalizados para sitios web, tarjetas de presentación digitales (vCard), redes Wi-Fi, textos y archivos de manera rápida y sin costo.</p>
             </div>
 
-            <!-- BARRA DE CATEGORÍAS TIPO TABS -->
+            <!-- BARRA DE CATEGORÍAS -->
             <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-200 flex overflow-x-auto gap-2 no-scrollbar">
                 <button onclick="seleccionarCategoria('website')" id="tab-website" class="cat-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap bg-blue-600 text-white shadow-sm transition">
                     <i data-lucide="globe" class="w-4 h-4"></i><span>WEBSITE</span>
@@ -127,24 +120,8 @@
 
             <div class="grid md:grid-cols-12 gap-8 items-start">
                 
-                <!-- Formulario Dinámico -->
+                <!-- Formulario -->
                 <div class="md:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-6">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Modalidad de Código QR</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <button type="button" onclick="seleccionarTipo('dinamico')" id="btn-dinamico" class="p-3 border-2 rounded-xl text-left border-blue-600 bg-blue-50/50 transition">
-                                <div class="font-semibold text-sm text-blue-900 flex items-center justify-between">
-                                    Dinámico <i data-lucide="zap" class="w-4 h-4 text-blue-600"></i>
-                                </div>
-                                <div class="text-xs text-slate-500 mt-1">Con estadísticas y 100 escaneos gratis.</div>
-                            </button>
-                            <button type="button" onclick="seleccionarTipo('estatico')" id="btn-estatico" class="p-3 border-2 rounded-xl text-left border-slate-200 bg-white hover:border-slate-300 transition">
-                                <div class="font-semibold text-sm text-slate-800">Estático</div>
-                                <div class="text-xs text-slate-500 mt-1">Directo y sin caducidad.</div>
-                            </button>
-                        </div>
-                    </div>
-
                     <!-- CAMPOS DINÁMICOS -->
                     <div id="campos-formulario" class="space-y-4"></div>
 
@@ -179,7 +156,6 @@
                                 <i data-lucide="download" class="w-4 h-4"></i>
                                 <span>Descargar Imagen PNG</span>
                             </button>
-                            <p id="info-qr-tipo" class="text-xs text-slate-500 pt-1"></p>
                         </div>
                     </div>
 
@@ -187,7 +163,7 @@
                     <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm text-center">
                         <span class="block text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-2">Publicidad</span>
                         <div class="min-h-[150px] bg-slate-50 border border-dashed border-slate-200 rounded-xl flex items-center justify-center p-4">
-                            <p class="text-xs text-slate-400">Bloque de anuncios para Google AdSense</p>
+                            <p class="text-xs text-slate-400">Bloque lateral para anuncios</p>
                         </div>
                     </div>
                 </div>
@@ -195,88 +171,11 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 2: EMPRESAS & EXCEL -->
-        <section id="seccion-empresas" class="space-y-6 hidden">
-            <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white p-8 rounded-2xl shadow-lg flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="space-y-2 max-w-xl">
-                    <span class="bg-blue-500/30 text-blue-200 text-xs px-3 py-1 rounded-full font-semibold">Módulo B2B / Inventarios</span>
-                    <h2 class="text-2xl font-bold">Generación Masiva por Excel para Empresas</h2>
-                    <p class="text-blue-200 text-sm">Sube tu archivo con tus SKUs y enlaces. Nuestra herramienta genera cientos de códigos QR organizados listos para imprimir de forma corporativa.</p>
-                </div>
-                <button onclick="simularSubidaExcel()" class="bg-white text-blue-900 hover:bg-blue-50 font-semibold px-6 py-3 rounded-xl shadow transition text-sm flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="file-spreadsheet" class="w-5 h-5 text-emerald-600"></i>
-                    <span>Simular Subida de Excel</span>
-                </button>
-            </div>
-
-            <div id="resultado-excel" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hidden space-y-4">
-                <div class="flex justify-between items-center">
-                    <h3 class="font-bold text-slate-800">Inventario procesado (5 elementos de prueba)</h3>
-                    <button onclick="descargarZipSimulado()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm px-4 py-2 rounded-xl transition flex items-center space-x-2">
-                        <i data-lucide="archive" class="w-4 h-4"></i>
-                        <span>Descargar Paquete ZIP (QRs)</span>
-                    </button>
-                </div>
-                <div class="overflow-x-auto border border-slate-100 rounded-xl">
-                    <table class="w-full text-left text-sm">
-                        <thead class="bg-slate-50 text-slate-700 border-b border-slate-200">
-                            <tr>
-                                <th class="p-3">SKU / ID</th>
-                                <th class="p-3">Nombre del Producto</th>
-                                <th class="p-3">Destino URL</th>
-                                <th class="p-3 text-center">Estado QR</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-cuerpo" class="divide-y divide-slate-100"></tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 3: PRECIOS -->
-        <section id="seccion-precios" class="space-y-8 hidden">
-            <div class="text-center max-w-xl mx-auto space-y-2">
-                <h2 class="text-3xl font-extrabold text-slate-900">Planes adaptados a tu crecimiento</h2>
-                <p class="text-slate-500 text-sm">Empieza gratis con anuncios o desbloquea todo el potencial profesional para tu negocio.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between space-y-6">
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-bold text-slate-800">Plan Básico</h3>
-                        <div class="text-3xl font-extrabold text-slate-900">$0 <span class="text-sm font-normal text-slate-500">/ siempre</span></div>
-                        <ul class="space-y-2.5 text-sm text-slate-700">
-                            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i><span>Hasta 100 escaneos por QR dinámico</span></li>
-                            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i><span>Publicidad en la redirección</span></li>
-                        </ul>
-                    </div>
-                    <button onclick="cambiarSeccion('generador')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-medium py-2.5 rounded-xl text-sm transition">
-                        Usar Versión Gratuita
-                    </button>
-                </div>
-
-                <div class="bg-blue-900 text-white p-8 rounded-2xl shadow-xl flex flex-col justify-between space-y-6 relative overflow-hidden">
-                    <div class="space-y-4 relative z-10">
-                        <span class="bg-blue-500 text-white text-xs px-3 py-1 rounded-full font-semibold">Recomendado Empresas</span>
-                        <h3 class="text-xl font-bold">Plan Pro / Inventarios</h3>
-                        <div class="text-3xl font-extrabold">$29 <span class="text-sm font-normal text-blue-200">/ mes</span></div>
-                        <ul class="space-y-2.5 text-sm text-blue-100">
-                            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>Escaneos 100% ilimitados y sin anuncios</span></li>
-                            <li class="flex items-center space-x-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>Carga masiva por archivos Excel (.xlsx)</span></li>
-                        </ul>
-                    </div>
-                    <button onclick="mostrarToast('Redirigiendo a pasarela de pago segura...')" class="w-full bg-white hover:bg-blue-50 text-blue-900 font-semibold py-2.5 rounded-xl text-sm transition relative z-10 shadow">
-                        Contratar Plan Empresa
-                    </button>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- Pie de página (Footer con enlaces legales para AdSense) -->
+    <!-- Pie de página -->
     <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-12 space-y-2">
-        <p>&copy; 2026 QRLocker. Todos los derechos reservados. Plataforma de códigos QR Freemium y B2B.</p>
+        <p>&copy; 2026 QRLocker. Todos los derechos reservados. Generador de Códigos QR gratuito.</p>
         <div class="flex justify-center space-x-4 text-slate-600 font-medium">
             <button onclick="abrirModal('privacidad')" class="hover:underline">Política de Privacidad</button>
             <span>•</span>
@@ -289,7 +188,6 @@
         lucide.createIcons();
 
         let categoriaActual = 'website';
-        let tipoActual = 'dinamico';
         let qrcodeInstance = null;
 
         renderizarCamposFormulario();
@@ -347,37 +245,12 @@
             }
         }
 
-        function seleccionarTipo(tipo) {
-            tipoActual = tipo;
-            const btnDinamico = document.getElementById('btn-dinamico');
-            const btnEstatico = document.getElementById('btn-estatico');
-            if (tipo === 'dinamico') {
-                btnDinamico.className = "p-3 border-2 rounded-xl text-left border-blue-600 bg-blue-50/50 transition";
-                btnEstatico.className = "p-3 border-2 rounded-xl text-left border-slate-200 bg-white hover:border-slate-300 transition";
-            } else {
-                btnEstatico.className = "p-3 border-2 rounded-xl text-left border-blue-600 bg-blue-50/50 transition";
-                btnDinamico.className = "p-3 border-2 rounded-xl text-left border-slate-200 bg-white hover:border-slate-300 transition";
-            }
-        }
-
-        function cambiarSeccion(seccion) {
-            document.getElementById('seccion-generador').classList.add('hidden');
-            document.getElementById('seccion-empresas').classList.add('hidden');
-            document.getElementById('seccion-precios').classList.add('hidden');
-
-            if (seccion === 'generador') document.getElementById('seccion-generador').classList.remove('hidden');
-            if (seccion === 'empresas') document.getElementById('seccion-empresas').classList.remove('hidden');
-            if (seccion === 'precios') document.getElementById('seccion-precios').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
         function generarQR() {
             let contenidoFinal = "";
             const colorDark = document.getElementById('qr-color').value;
             const colorLight = document.getElementById('qr-bg').value;
             const contenedorQR = document.getElementById('qrcode-container');
             const accionesContainer = document.getElementById('acciones-qr');
-            const infoTipo = document.getElementById('info-qr-tipo');
 
             if (categoriaActual === 'website' || categoriaActual === 'pdf' || categoriaActual === 'app') {
                 const inputId = categoriaActual === 'website' ? 'input-url' : 'input-file';
@@ -405,14 +278,6 @@
 
             contenedorQR.innerHTML = "";
 
-            if (tipoActual === 'dinamico' && (categoriaActual === 'website' || categoriaActual === 'pdf' || categoriaActual === 'app')) {
-                const codigoAleatorio = Math.random().toString(36).substring(2, 8);
-                contenidoFinal = `https://qr-web-locker.vercel.app/r/${codigoAleatorio}`;
-                infoTipo.innerHTML = `⚡ <b>QR Dinámico activo:</b> Redirige a tu enlace inicial con analíticas (Límite: 100 escaneos).`;
-            } else {
-                infoTipo.innerHTML = `🔒 <b>QR Estático (${categoriaActual.toUpperCase()}):</b> Contiene la información integrada directamente.`;
-            }
-
             qrcodeInstance = new QRCode(contenedorQR, {
                 text: contenidoFinal,
                 width: 180,
@@ -437,36 +302,6 @@
             } else {
                 mostrarToast('Primero genera un código QR.');
             }
-        }
-
-        function simularSubidaExcel() {
-            const resultado = document.getElementById('resultado-excel');
-            const cuerpoTabla = document.getElementById('tabla-cuerpo');
-            resultado.classList.remove('hidden');
-            
-            const datosMock = [
-                { sku: "SKU-101", nombre: "Audífonos Inalámbricos Bluetooth", url: "https://tienda.com/p/101" },
-                { sku: "SKU-102", nombre: "Smartwatch Deportivo Pro", url: "https://tienda.com/p/102" },
-                { sku: "SKU-103", nombre: "Cargador Portátil PowerBank 20k", url: "https://tienda.com/p/103" }
-            ];
-
-            cuerpoTabla.innerHTML = "";
-            datosMock.forEach(item => {
-                cuerpoTabla.innerHTML += `
-                    <tr class="hover:bg-slate-50/50">
-                        <td class="p-3 font-medium text-slate-900">${item.sku}</td>
-                        <td class="p-3 text-slate-700">${item.nombre}</td>
-                        <td class="p-3 text-blue-600 truncate max-w-xs">${item.url}</td>
-                        <td class="p-3 text-center"><span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-medium">Generado OK</span></td>
-                    </tr>`;
-            });
-            mostrarToast('¡Archivo Excel procesado correctamente!');
-            resultado.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function descargarZipSimulado() {
-            mostrarToast('Comprimiendo paquete ZIP con los códigos...');
-            setTimeout(() => { mostrarToast('¡Paquete ZIP descargado exitosamente!'); }, 1500);
         }
 
         function mostrarToast(mensaje) {
