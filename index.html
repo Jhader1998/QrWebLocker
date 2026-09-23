@@ -84,7 +84,6 @@
         <div class="bg-white border border-slate-200 p-3 rounded-2xl shadow-sm text-center">
             <span class="block text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-1">Espacio Patrocinado</span>
             <div class="min-h-[70px] bg-slate-50 border border-dashed border-slate-200 rounded-xl flex items-center justify-center">
-                <!-- Aquí puedes colocar el bloque de anuncio de display de AdSense en el futuro -->
                 <p class="text-xs text-slate-400">Espacio publicitario superior</p>
             </div>
         </div>
@@ -136,6 +135,22 @@
                         </div>
                     </div>
 
+                    <!-- SELECTOR DE MARCOS / ESTILOS -->
+                    <div class="space-y-2 pt-2 border-t border-slate-100">
+                        <label class="block text-sm font-medium text-slate-700">Marco Decorativo</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" onclick="seleccionarMarco('ninguno')" id="marco-ninguno" class="marco-btn p-2 border-2 border-blue-600 bg-blue-50/50 rounded-xl text-xs font-medium text-center transition">
+                                Sin Marco
+                            </button>
+                            <button type="button" onclick="seleccionarMarco('gatitos')" id="marco-gatitos" class="marco-btn p-2 border-2 border-slate-200 bg-white rounded-xl text-xs font-medium text-center transition hover:border-slate-300">
+                                🐾 Marco Gatitos
+                            </button>
+                            <button type="button" onclick="seleccionarMarco('escanear')" id="marco-escanear" class="marco-btn p-2 border-2 border-slate-200 bg-white rounded-xl text-xs font-medium text-center transition hover:border-slate-300">
+                                📱 "Escanea Aquí"
+                            </button>
+                        </div>
+                    </div>
+
                     <button onclick="generarQR()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl shadow-md transition flex items-center justify-center space-x-2">
                         <i data-lucide="sparkles" class="w-5 h-5"></i>
                         <span>Generar Código QR</span>
@@ -144,11 +159,18 @@
 
                 <!-- Vista Previa y Anuncios -->
                 <div class="md:col-span-5 space-y-6">
+                    <!-- Vista Previa con Marco Dinámico -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center text-center space-y-4">
                         <h3 class="font-bold text-slate-700">Vista Previa del Resultado</h3>
                         
-                        <div id="qrcode-container" class="p-4 bg-white border border-slate-100 rounded-2xl shadow-inner min-h-[200px] min-w-[200px] flex items-center justify-center">
-                            <span class="text-xs text-slate-400">Configura tus datos y genera tu QR</span>
+                        <div id="marco-wrapper" class="p-4 bg-white border-2 border-slate-200 rounded-2xl shadow-inner flex flex-col items-center justify-center transition">
+                            <span id="texto-marco-superior" class="text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest hidden">¡Escanea este código!</span>
+                            
+                            <div id="qrcode-container" class="min-h-[180px] min-w-[180px] flex items-center justify-center bg-white">
+                                <span class="text-xs text-slate-400">Configura tus datos y genera tu QR</span>
+                            </div>
+
+                            <span id="texto-marco-inferior" class="text-xs font-bold text-slate-600 mt-2 hidden">🐾 Gatitos & QR 🐾</span>
                         </div>
 
                         <div id="acciones-qr" class="w-full space-y-2 hidden">
@@ -188,6 +210,7 @@
         lucide.createIcons();
 
         let categoriaActual = 'website';
+        let marcoActual = 'ninguno';
         let qrcodeInstance = null;
 
         renderizarCamposFormulario();
@@ -207,6 +230,36 @@
             });
             document.getElementById(`tab-${cat}`).className = "cat-btn flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap bg-blue-600 text-white shadow-sm transition";
             renderizarCamposFormulario();
+        }
+
+        function seleccionarMarco(marco) {
+            marcoActual = marco;
+            document.querySelectorAll('.marco-btn').forEach(btn => {
+                btn.className = "marco-btn p-2 border-2 border-slate-200 bg-white rounded-xl text-xs font-medium text-center transition hover:border-slate-300";
+            });
+            document.getElementById(`marco-${marco}`).className = "marco-btn p-2 border-2 border-blue-600 bg-blue-50/50 rounded-xl text-xs font-medium text-center transition";
+
+            const wrapper = document.getElementById('marco-wrapper');
+            const txtSup = document.getElementById('texto-marco-superior');
+            const txtInf = document.getElementById('texto-marco-inferior');
+
+            if (marco === 'ninguno') {
+                wrapper.className = "p-4 bg-white border-2 border-slate-200 rounded-2xl shadow-inner flex flex-col items-center justify-center transition";
+                txtSup.classList.add('hidden');
+                txtInf.classList.add('hidden');
+            } else if (marco === 'gatitos') {
+                wrapper.className = "p-4 bg-amber-50 border-4 border-amber-300 rounded-2xl shadow-inner flex flex-col items-center justify-center transition";
+                txtSup.textContent = "🐾 ¡Miau! Escanea aquí 🐾";
+                txtSup.classList.remove('hidden');
+                txtInf.textContent = "🐱 Zona de Gatitos 🐱";
+                txtInf.classList.remove('hidden');
+            } else if (marco === 'escanear') {
+                wrapper.className = "p-4 bg-blue-50 border-4 border-blue-500 rounded-2xl shadow-inner flex flex-col items-center justify-center transition";
+                txtSup.textContent = "📱 ESCANÉAME 📱";
+                txtSup.classList.remove('hidden');
+                txtInf.textContent = "¡Acceso Rápido!";
+                txtInf.classList.remove('hidden');
+            }
         }
 
         function renderizarCamposFormulario() {
