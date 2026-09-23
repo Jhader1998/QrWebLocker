@@ -136,7 +136,7 @@
                         <input type="file" id="input-foto-fondo" accept="image/*" onchange="cargarFotoFondo(event)" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
                     </div>
 
-                    <!-- CONTROLES DE TAMAÑO Y POSICIÓN (MÁXIMO 165px PARA EVITAR BUGS) -->
+                    <!-- CONTROLES DE TAMAÑO Y POSICIÓN -->
                     <div id="panel-controles-foto" class="space-y-4 pt-2 border-t border-slate-100 bg-slate-50 p-4 rounded-xl hidden">
                         <div class="flex justify-between items-center">
                             <h4 class="text-xs font-bold uppercase tracking-wider text-blue-600">Ajustes sobre la Foto</h4>
@@ -174,14 +174,14 @@
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center text-center space-y-4">
                         <h3 class="font-bold text-slate-700">Vista Previa</h3>
                         
-                        <!-- Lienzo con o sin Foto -->
+                        <!-- Lienzo con o sin Foto (Ancho y alto estrictos de 280px) -->
                         <div id="lienzo-preview" class="relative w-[280px] h-[280px] bg-white border-2 border-slate-200 rounded-2xl overflow-hidden flex items-center justify-center shadow-inner">
                             
-                            <!-- Imagen de fondo (Oculta por defecto) -->
-                            <img id="imagen-fondo" class="absolute inset-0 w-full h-full object-cover hidden z-0" alt="Fondo">
+                            <!-- Imagen de fondo -->
+                            <img id="imagen-fondo" class="absolute inset-0 w-full h-full object-cover hidden z-0 pointer-events-none" alt="Fondo">
 
-                            <!-- Contenedor del QR -->
-                            <div id="qr-movible" class="p-2 bg-white rounded-xl shadow-md border border-slate-200 flex items-center justify-center transition-all duration-75" style="position: relative;">
+                            <!-- Contenedor del QR con ancho estricto para evitar encogimientos -->
+                            <div id="qr-movible" class="p-2 bg-white rounded-xl shadow-md border border-slate-200 flex items-center justify-center z-10 shrink-0" style="position: relative; width: max-content;">
                                 <div id="qrcode-container">
                                     <span class="text-xs text-slate-400">Ingresa datos y genera tu QR</span>
                                 </div>
@@ -372,15 +372,77 @@
         }
 
         function descargarQR() {
-            const img = document.querySelector('#qrcode-container img');
-            if (img) {
+            const qrImg = document.querySelector('#qrcode-container img');
+            if (!qrImg) {
+                mostrarToast('Primero genera un código QR.');
+                return;
+            }
+
+            if (!hayFotoFondo) {
+                // Si no hay foto, descarga solo el QR normal
                 const enlace = document.createElement('a');
-                enlace.href = img.src;
+                enlace.href = qrImg.src;
                 enlace.download = `codigo-qr-${categoriaActual}.png`;
                 enlace.click();
                 mostrarToast('¡Imagen descargada!');
-            } else {
-                mostrarToast('Primero genera un código QR.');
+                return;
+            }
+
+            // Si hay foto de fondo, fusionamos el fondo y el QR usando un Canvas en tiempo real
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const imgFondo = document.getElementById('imagen-fondo');
+            const lienzoPreview = document.getElementById('lienzo-preview');
+            const qrMovible = document.getElementById('qr-movible');
+
+            canvas.width = 600; // Alta resolución para la exportación
+            canvas.height = 600;
+
+            const fondoObj = new Image();
+            fondoObj.crossOrigin = "anonymous";
+            fondoObj.src = imgFondo.src;
+
+            fondoObj.onload = function() {
+                // 1. Dibujar imagen de fondo
+                ctx.drawImage(fondoObj, 0, 0, canvas.width, canvas.height);
+
+                const qrObj = new Image();
+                qrObj.crossOrigin = "anonymous";
+                qrObj.src = qrImg.src;
+
+                qrObj.onload = function() {
+                    // Calcular posición y escala real basada en la vista previa de 280px
+                    const previewW = lienzoPreview.clientWidth;
+                    const previewH = lienzoPreview.clientHeight;
+
+                    const qrRect = qrMovible.getBoundingClientRect();
+                    const previewRect = lienzoPreview.getBoundingClientRect();
+
+                    const offsetX = qrRect.left - previewRect.left;
+                    const offsetY = qrRect.top - previewRect.top;
+
+                    const escalaX = canvas.width / previewW;
+                    const escalaY = canvas.height / previewH;
+
+                    const finalX = offsetX * escalaX;
+                    const finalY = offsetY * escalaY;
+                    const finalW = qrRect.width * escalaX;
+                    const finalH = qrRect.height * escalaY;
+
+                    // Dibujar fondo blanco contenedor del QR para que resalte sobre la foto
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fillRect(finalX, finalY, finalW, finalH);
+
+                    // 2. Dibujar el código QR encima en su posición exacta
+                    ctx.drawImage(qrObj, finalX + 8, finalY + 8, finalW - 16, finalH - 16);
+
+                    // Descargar el resultado final fusionado
+                    const enlace = document.createElement('a');
+                    enlace.href = canvas.toDataURL('image/png');
+                    enlace.download = `qr-personalizado-${categoriaActual}.png`;
+                    enlace.click();
+                    mostrarToast('¡Diseño descargado con éxito!');
+                }
             }
         }
 
